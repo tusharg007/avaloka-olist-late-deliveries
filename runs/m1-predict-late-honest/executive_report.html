@@ -1,0 +1,41 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Executive report — Predict &#39;is_late&#39;</title>
+<style>
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1b1f24;background:#f6f8fa}
+.wrap{max-width:960px;margin:0 auto;padding:32px}
+h1{font-size:28px;margin:0 0 4px} h2{font-size:20px;margin:28px 0 8px;border-bottom:1px solid #e1e4e8;padding-bottom:6px}
+.sub{color:#57606a;margin:0 0 20px}
+.card{background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:16px 20px;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14px} th,td{text-align:left;padding:7px 10px;border-bottom:1px solid #eaecef}
+th{background:#f6f8fa} .kpi{display:inline-block;min-width:150px;margin:6px 18px 6px 0}
+.kpi .v{font-size:22px;font-weight:600} .kpi .l{color:#57606a;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.pass{color:#1a7f37;font-weight:600}.warn{color:#9a6700;font-weight:600}.fail{color:#cf222e;font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:12px;background:#ddf4ff;color:#0969da}
+.muted{color:#57606a;font-size:13px} code{background:#eff1f3;padding:1px 5px;border-radius:4px}
+</style></head><body><div class="wrap">
+<h1>Executive report</h1>
+<p class="sub">Predict &#39;is_late&#39; &nbsp;·&nbsp; mission <code>b04be9af3831</code> &nbsp;·&nbsp; <span class="badge">train</span></p>
+
+<div class="card">
+<div class="kpi"><div class="v">94/100</div><div class="l">Quality</div></div><div class="kpi"><div class="v">96,470</div><div class="l">Rows</div></div><div class="kpi"><div class="v">PASS</div><div class="l">Verdict</div></div><div class="kpi"><div class="v">11.1x</div><div class="l">Multiplier</div></div></div>
+
+<h2>What we did</h2>
+<div class="card"><p>Avaloka profiled 16 columns across 96,470 rows (quality 94/100), prepared a reproducible pipeline and planned a &#39;binary_classification&#39; approach. It trained 3 candidate model(s) and selected &#39;gradient_boosting&#39;. Validation returned &#39;pass&#39; with a maximum safe deployment level of 4 of 4.</p></div>
+
+<h2>Economics of this mission</h2>
+<div class="card"><table><tr><th>Measure</th><th>Value</th></tr>
+<tr><td>Mission duration</td><td>3.3 minutes</td></tr><tr><td>Estimated manual effort</td><td>19.8 hours</td></tr><tr><td>Human review required</td><td>1.8 hours</td></tr><tr><td>Avaloka compute cost</td><td>$0.12</td></tr><tr><td>Avaloka model/API cost</td><td>$0.00</td></tr><tr><td>Avaloka mission charge</td><td>$0.00</td></tr><tr><td>Total mission cost (Avaloka)</td><td>$0.12</td></tr><tr><td>Human review cost</td><td>$142.40</td></tr><tr><td>Total customer cost</td><td>$142.52</td></tr><tr><td>Estimated labor value created</td><td>$1,584</td></tr><tr><td>Economic multiplier</td><td>11.1x</td></tr></table>
+<p class="muted">Estimated manual effort is a conservative heuristic, to be calibrated from observed customer workflows — not an LLM guess.</p></div>
+
+<h2>Key findings</h2>
+<div class="card"><ul><li>&#39;freight_value&#39; and &#39;total_weight_g&#39; are strongly associated (|corr|=0.6347).</li><li>&#39;same_state&#39; and &#39;promised_days&#39; are strongly associated (|corr|=0.5264).</li><li>28 duplicate rows (0.0%).</li><li>Best model &#39;gradient_boosting&#39; scored 0.7087 roc_auc on holdout.</li><li>&#39;freight_value&#39; and &#39;total_weight_g&#39; move together (|corr|=0.6347); consider redundancy or a shared driver.</li></ul></div>
+
+<h2>Validation &amp; limitations</h2>
+<div class="card"><p>Validation verdict: <span class="pass">PASS</span>.
+Maximum safe deployment level: <strong>4</strong> of 4.</p>
+<ul><li>Estimated manual effort and value are heuristics pending customer calibration.</li></ul></div>
+
+<h2>Fireflies activated</h2>
+<div class="card"><table><tr><th>Firefly</th><th>Human role</th><th>Output</th></tr>
+<tr><td>data_scout</td><td>Data analyst</td><td>Profiled 16 columns x 96470 rows; quality score 94/100 with 1 issues flagged.</td></tr><tr><td>sampling_specialist</td><td>Data scientist</td><td>Working sample: 96,470 rows (none). 96,470 rows fits the live full-analysis lane; the full dataset is used so no information is discarded.</td></tr><tr><td>data_engineer</td><td>Data engineer</td><td>Applied 2 documented transformations; wrote transformed_dataset.parquet (96442x16) + reproducible analysis.py / analysis.ipynb.</td></tr><tr><td>analysis_planner</td><td>Senior data scientist</td><td>Planned task=&#39;binary_classification&#39; with 3 candidate(s); split=&#39;stratified_train_test&#39;; 2 human approval gate(s).</td></tr><tr><td>model_scientist</td><td>ML scientist</td><td>Trained 3 candidate(s); selected &#39;gradient_boosting&#39; (roc_auc=0.7087).</td></tr><tr><td>validator</td><td>Model-risk specialist</td><td>Validation verdict=&#39;pass&#39;; 6 checks; max safe deployment level 4.</td></tr><tr><td>finops</td><td>Infrastructure engineer</td><td>Cost-quality analysis across 3 candidate(s); recommended &#39;Maximum quality&#39;.</td></tr></table></div>
+<p class="muted">Generated by Avaloka. Reproduce or adapt this analysis with <code>avaloka</code>.</p>
+</div></body></html>

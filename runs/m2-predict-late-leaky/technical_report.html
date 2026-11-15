@@ -1,0 +1,118 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Technical report — Predict &#39;is_late&#39;</title>
+<style>
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1b1f24;background:#f6f8fa}
+.wrap{max-width:960px;margin:0 auto;padding:32px}
+h1{font-size:28px;margin:0 0 4px} h2{font-size:20px;margin:28px 0 8px;border-bottom:1px solid #e1e4e8;padding-bottom:6px}
+.sub{color:#57606a;margin:0 0 20px}
+.card{background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:16px 20px;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14px} th,td{text-align:left;padding:7px 10px;border-bottom:1px solid #eaecef}
+th{background:#f6f8fa} .kpi{display:inline-block;min-width:150px;margin:6px 18px 6px 0}
+.kpi .v{font-size:22px;font-weight:600} .kpi .l{color:#57606a;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.pass{color:#1a7f37;font-weight:600}.warn{color:#9a6700;font-weight:600}.fail{color:#cf222e;font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:12px;background:#ddf4ff;color:#0969da}
+.muted{color:#57606a;font-size:13px} code{background:#eff1f3;padding:1px 5px;border-radius:4px}
+</style></head><body><div class="wrap">
+<h1>Technical report</h1>
+<p class="sub">Predict &#39;is_late&#39; · mission <code>aa60e82b0379</code></p>
+
+<h2>Dataset</h2>
+<div class="card"><p><code>/mnt/e/Avloka/data/prepared/orders_leaky.csv</code> — 96470 rows × 17 cols
+(csv). Quality score <strong>100/100</strong>.
+SHA-256 <span class="muted">7e7bcad13c683f8c…</span></p></div>
+
+<h2>Schema &amp; distributions</h2>
+<div class="card"><table><tr><th>Column</th><th>Role</th><th>Dtype</th><th>Missing</th><th>Unique</th><th>Summary</th></tr>
+<tr><td>customer_state</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>27</td>
+<td class="muted">top: SP(40494), RJ(12350), MG(11354)</td></tr><tr><td>seller_state</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>22</td>
+<td class="muted">top: SP(68386), MG(7661), PR(7444)</td></tr><tr><td>same_state</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>2</td>
+<td class="muted">μ=0.36, σ=0.48,
+[0, 1], outliers=0
+</td></tr><tr><td>main_category</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>74</td>
+<td class="muted">top: bed_bath_table(9184), health_beauty(8613), sports_leisure(7492)</td></tr><tr><td>n_items</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>17</td>
+<td class="muted">μ=1.14, σ=0.539,
+[1, 21], outliers=9635
+</td></tr><tr><td>n_sellers</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>5</td>
+<td class="muted">μ=1.01, σ=0.124,
+[1, 5], outliers=1275
+</td></tr><tr><td>items_value</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>7498</td>
+<td class="muted">μ=137, σ=209,
+[0.85, 1.34e+04], outliers=7658
+</td></tr><tr><td>freight_value</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>7626</td>
+<td class="muted">μ=22.8, σ=21.7,
+[0, 1.79e+03], outliers=9693
+</td></tr><tr><td>freight_share</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>43330</td>
+<td class="muted">μ=0.209, σ=0.126,
+[0, 0.955], outliers=2580
+</td></tr><tr><td>total_weight_g</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>2859</td>
+<td class="muted">μ=2.39e+03, σ=4.77e+03,
+[0, 1.84e+05], outliers=13544
+</td></tr><tr><td>payment_type</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>5</td>
+<td class="muted">top: credit_card(72818), boleto(19191), voucher(2977)</td></tr><tr><td>max_installments</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>24</td>
+<td class="muted">μ=2.93, σ=2.71,
+[0, 24], outliers=6087
+</td></tr><tr><td>purchase_weekday</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>7</td>
+<td class="muted">top: Monday(15701), Tuesday(15502), Wednesday(15074)</td></tr><tr><td>purchase_hour</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>24</td>
+<td class="muted">μ=14.8, σ=5.33,
+[0, 23], outliers=0
+</td></tr><tr><td>promised_days</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>93880</td>
+<td class="muted">μ=23.7, σ=8.76,
+[2.01, 155], outliers=2427
+</td></tr><tr><td>actual_days</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>93803</td>
+<td class="muted">μ=12.6, σ=9.55,
+[0.533, 210], outliers=4896
+</td></tr><tr><td>is_late</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>2</td>
+<td class="muted">μ=0.0677, σ=0.251,
+[0, 1], outliers=6534
+</td></tr></table></div>
+
+<h2>Strongest correlations</h2>
+<div class="card"><table><tr><th>A</th><th>B</th><th>|corr|</th></tr>
+<tr><td>freight_value</td><td>total_weight_g</td><td>0.6347</td></tr><tr><td>actual_days</td><td>is_late</td><td>0.604</td></tr><tr><td>same_state</td><td>promised_days</td><td>0.5264</td></tr><tr><td>n_items</td><td>freight_value</td><td>0.4354</td></tr><tr><td>items_value</td><td>freight_share</td><td>0.4154</td></tr><tr><td>items_value</td><td>freight_value</td><td>0.4083</td></tr><tr><td>promised_days</td><td>actual_days</td><td>0.3836</td></tr><tr><td>same_state</td><td>actual_days</td><td>0.3622</td></tr><tr><td>items_value</td><td>total_weight_g</td><td>0.3495</td></tr><tr><td>items_value</td><td>max_installments</td><td>0.3143</td></tr><tr><td>n_items</td><td>n_sellers</td><td>0.285</td></tr><tr><td>same_state</td><td>freight_value</td><td>0.2535</td></tr><tr><td>freight_share</td><td>max_installments</td><td>0.2511</td></tr><tr><td>freight_value</td><td>promised_days</td><td>0.2376</td></tr><tr><td>n_items</td><td>total_weight_g</td><td>0.2297</td></tr></table></div>
+<h2>Data quality issues</h2>
+<div class="card"><p>No material quality issues detected.</p></div>
+
+<h2>Plan</h2>
+<div class="card"><p>Task: <strong>binary_classification</strong> — Target has exactly 2 classes.</p>
+<p>Split: <code>stratified_train_test</code> — Stratified split preserves class balance in train and test.</p>
+<p>Candidate algorithms: logistic_regression, random_forest, gradient_boosting</p>
+<p class="muted">Unconstrained budget; all candidate algorithms considered.</p>
+<p><strong>Hypotheses:</strong></p><ul><li>&#39;freight_value&#39; and &#39;total_weight_g&#39; move together (|corr|=0.6347); consider redundancy or a shared driver.</li><li>&#39;actual_days&#39; and &#39;is_late&#39; move together (|corr|=0.604); consider redundancy or a shared driver.</li><li>&#39;same_state&#39; and &#39;promised_days&#39; move together (|corr|=0.5264); consider redundancy or a shared driver.</li><li>Identify which features most influence &#39;is_late&#39; and quantify the effect.</li></ul></div>
+
+
+<h2>Model results</h2>
+<div class="card"><table><tr><th>Candidate</th><th>roc_auc</th><th>CV mean ± std</th><th>Train s</th><th>Latency ms</th></tr>
+<tr style="font-weight:600;background:#f0fff4">
+<td>logistic_regression</td><td>1.0000</td>
+<td>1.000 ± 0.000</td>
+<td>0.67</td><td>1.89</td></tr><tr >
+<td>gradient_boosting</td><td>0.9998</td>
+<td>1.000 ± 0.000</td>
+<td>23.06</td><td>3.14</td></tr><tr >
+<td>random_forest</td><td>0.9977</td>
+<td>0.997 ± 0.001</td>
+<td>11.55</td><td>10.54</td></tr></table><p>Selected: <strong>logistic_regression</strong>.</p></div>
+<h2>Validation</h2>
+<div class="card"><p>Verdict <span class="pass">PASS</span>,
+max safe deployment level 4.</p>
+<table><tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+<tr><td>data_sufficiency</td><td class="pass">pass</td><td class="muted">~50 rows/feature suggests &gt;= 800 rows for 16 features.</td></tr><tr><td>target_leakage</td><td class="pass">pass</td><td class="muted">No feature is near-perfectly predictive of the target.</td></tr><tr><td>split_validity</td><td class="pass">pass</td><td class="muted">Used &#39;stratified_train_test&#39; (77176 train / 19294 test rows).</td></tr><tr><td>beats_baseline</td><td class="pass">pass</td><td class="muted">CV roc_auc 1.000 beats the prior baseline (0.500) by more than fold noise.</td></tr><tr><td>stability</td><td class="pass">pass</td><td class="muted">CV roc_auc = 1.000 +/- 0.000 (stable).</td></tr><tr><td>overfitting</td><td class="pass">pass</td><td class="muted">Holdout and CV scores are consistent.</td></tr></table></div>
+
+<p class="muted">Reproduce with <code>analysis.py</code> / <code>analysis.ipynb</code>; see <code>lineage.json</code> and <code>environment.lock</code>.</p>
+</div></body></html>

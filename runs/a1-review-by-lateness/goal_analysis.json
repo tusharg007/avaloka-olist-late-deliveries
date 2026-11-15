@@ -1,0 +1,29 @@
+{
+  "goal": "average review_score by is_late",
+  "kind": "group_comparison",
+  "status": "answered",
+  "scope": "All 96,470 working rows",
+  "columns": [
+    "review_score",
+    "is_late"
+  ],
+  "metrics": {
+    "group_column": "is_late",
+    "value_column": "review_score",
+    "aggregation": "mean",
+    "groups": [
+      {
+        "group": "0",
+        "value": 4.290386
+      },
+      {
+        "group": "1",
+        "value": 2.270491
+      }
+    ]
+  },
+  "findings": [
+    "is_late=0: mean review_score=4.29.",
+    "is_late=1: mean review_score=2.27."
+  ]
+}

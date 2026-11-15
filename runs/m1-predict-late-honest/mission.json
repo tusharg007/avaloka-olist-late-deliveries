@@ -1,0 +1,156 @@
+{
+  "mission_id": "b04be9af3831",
+  "kind": "train",
+  "goal": "Predict 'is_late'",
+  "data_source": "/mnt/e/Avloka/data/prepared/orders_model.csv",
+  "output_dir": "/mnt/e/Avloka/runs/m1-predict-late-honest",
+  "task": "binary_classification",
+  "workload": {
+    "lane": "online",
+    "n_rows": 96490,
+    "n_bytes": 10966414,
+    "estimated": true,
+    "rationale": "96,490 rows / 10.5 MB fits the live full-analysis budget.",
+    "spoken": "This one's compact \u2014 ~96,490 rows. I'll analyse the whole thing live, right now, nothing held back.",
+    "recommend_batch": false
+  },
+  "verdict": "pass",
+  "max_safe_deployment_level": 4,
+  "economics": {
+    "mission_duration_seconds": 195.89715484299995,
+    "estimated_manual_effort_hours": 19.8,
+    "human_review_hours": 1.78,
+    "compute_cost_usd": 0.12,
+    "model_cost_usd": 0.0,
+    "mission_charge_usd": 0.0,
+    "total_mission_cost_usd": 0.12,
+    "human_review_cost_usd": 142.4,
+    "total_customer_cost_usd": 142.52,
+    "estimated_labor_value_usd": 1584.0,
+    "economic_multiplier": 11.1,
+    "loaded_hourly_rate_usd": 80.0,
+    "tier": "community"
+  },
+  "fireflies": [
+    {
+      "firefly": "data_scout",
+      "human_role": "Data analyst",
+      "output": "Profiled 16 columns x 96470 rows; quality score 94/100 with 1 issues flagged.",
+      "manual_minutes": 141,
+      "compute_cost_usd": 0.000572,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.9538,
+      "notes": "",
+      "metadata": {
+        "quality_score": 94,
+        "n_issues": 1
+      }
+    },
+    {
+      "firefly": "sampling_specialist",
+      "human_role": "Data scientist",
+      "output": "Working sample: 96,470 rows (none). 96,470 rows fits the live full-analysis lane; the full dataset is used so no information is discarded.",
+      "manual_minutes": 30.0,
+      "compute_cost_usd": 2e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0028,
+      "notes": "",
+      "metadata": {
+        "sampled": false,
+        "strategy": "none"
+      }
+    },
+    {
+      "firefly": "data_engineer",
+      "human_role": "Data engineer",
+      "output": "Applied 2 documented transformations; wrote transformed_dataset.parquet (96442x16) + reproducible analysis.py / analysis.ipynb.",
+      "manual_minutes": 218,
+      "compute_cost_usd": 0.000255,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.4258,
+      "notes": "",
+      "metadata": {
+        "n_transformations": 2
+      }
+    },
+    {
+      "firefly": "analysis_planner",
+      "human_role": "Senior data scientist",
+      "output": "Planned task='binary_classification' with 3 candidate(s); split='stratified_train_test'; 2 human approval gate(s).",
+      "manual_minutes": 60.0,
+      "compute_cost_usd": 7e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0111,
+      "notes": "",
+      "metadata": {
+        "task": "binary_classification",
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "model_scientist",
+      "human_role": "ML scientist",
+      "output": "Trained 3 candidate(s); selected 'gradient_boosting' (roc_auc=0.7087).",
+      "manual_minutes": 450,
+      "compute_cost_usd": 0.116515,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 194.1923,
+      "notes": "",
+      "metadata": {
+        "selected": "gradient_boosting",
+        "score": 0.7087,
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "validator",
+      "human_role": "Model-risk specialist",
+      "output": "Validation verdict='pass'; 6 checks; max safe deployment level 4.",
+      "manual_minutes": 124,
+      "compute_cost_usd": 6.4e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.107,
+      "notes": "",
+      "metadata": {
+        "verdict": "pass",
+        "max_level": 4
+      }
+    },
+    {
+      "firefly": "finops",
+      "human_role": "Infrastructure engineer",
+      "output": "Cost-quality analysis across 3 candidate(s); recommended 'Maximum quality'.",
+      "manual_minutes": 45.0,
+      "compute_cost_usd": 1.6e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0262,
+      "notes": "",
+      "metadata": {
+        "recommended": "Maximum quality"
+      }
+    },
+    {
+      "firefly": "reporter",
+      "human_role": "Analyst / consultant",
+      "output": "Wrote executive & technical reports, assumptions, lineage, environment lock and README.",
+      "manual_minutes": 120.0,
+      "compute_cost_usd": 9e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.1495,
+      "notes": "",
+      "metadata": {}
+    }
+  ],
+  "budget": {
+    "limit_usd": null,
+    "spent_usd": 0.1175
+  },
+  "model": {
+    "selected": "gradient_boosting",
+    "metric": "roc_auc",
+    "score": 0.7086836049685663,
+    "baseline_score": 0.5,
+    "baseline_strategy": "prior",
+    "beats_baseline": true
+  }
+}

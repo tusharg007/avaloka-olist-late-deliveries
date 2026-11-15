@@ -1,0 +1,41 @@
+mission:
+  id: e4ff82cfa675
+  goal: average is_late by purchase_month
+  kind: analyze
+sampling:
+  sampled: false
+  reason: 96,470 rows fits the live full-analysis lane; the full dataset is used so
+    no information is discarded.
+  n_input_rows: 96470
+  n_working_rows: 96470
+  strategy: none
+  stratify_by: null
+transformations:
+- op: drop_duplicate_rows
+  rows_removed: 17
+- op: strip_whitespace
+  columns:
+  - customer_state
+  - seller_state
+  - main_category
+  - payment_type
+  - purchase_weekday
+  - purchase_month
+task_choice:
+  task: exploratory_analysis
+  reason: No --target supplied; mission is analysis-only.
+split:
+  strategy: none
+  reason: Analysis-only mission; no model split required.
+human_approval_gates:
+- Confirm the target and metric match the intended decision.
+refuse_if:
+- Target leakage is detected and unresolved.
+- Data is insufficient for a stable estimate of the chosen metric.
+- A requested deployment latency cannot be met by any candidate.
+data_quality_issues:
+- severity: medium
+  column: null
+  kind: duplicate_rows
+  detail: 17 duplicate rows (0.0%).
+deferred_decisions: []

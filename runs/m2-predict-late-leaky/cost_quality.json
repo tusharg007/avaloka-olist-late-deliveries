@@ -1,0 +1,63 @@
+{
+  "options": {
+    "Economical": {
+      "candidate": "logistic_regression",
+      "validation_score": 1.0,
+      "metric": "roc_auc",
+      "training_cost_usd": 0.0,
+      "api_latency_ms": 1.89,
+      "est_monthly_serving_usd": 20.65
+    },
+    "Balanced": {
+      "candidate": "logistic_regression",
+      "validation_score": 1.0,
+      "metric": "roc_auc",
+      "training_cost_usd": 0.0,
+      "api_latency_ms": 1.89,
+      "est_monthly_serving_usd": 20.65
+    },
+    "Maximum quality": {
+      "candidate": "logistic_regression",
+      "validation_score": 1.0,
+      "metric": "roc_auc",
+      "training_cost_usd": 0.0,
+      "api_latency_ms": 1.89,
+      "est_monthly_serving_usd": 20.65
+    }
+  },
+  "all_candidates": [
+    {
+      "candidate": "logistic_regression",
+      "validation_score": 1.0,
+      "metric": "roc_auc",
+      "training_cost_usd": 0.0,
+      "api_latency_ms": 1.89,
+      "est_monthly_serving_usd": 20.65
+    },
+    {
+      "candidate": "gradient_boosting",
+      "validation_score": 0.9998,
+      "metric": "roc_auc",
+      "training_cost_usd": 0.0008,
+      "api_latency_ms": 3.14,
+      "est_monthly_serving_usd": 22.39
+    },
+    {
+      "candidate": "random_forest",
+      "validation_score": 0.9977,
+      "metric": "roc_auc",
+      "training_cost_usd": 0.0004,
+      "api_latency_ms": 10.54,
+      "est_monthly_serving_usd": 32.76
+    }
+  ],
+  "recommendation": {
+    "choice": "Economical",
+    "rationale": "Higher-cost models add negligible quality; the Economical option is the rational default."
+  },
+  "assumptions": {
+    "cpu_usd_per_hour": 0.12,
+    "serving_base_usd": 18.0,
+    "serving_latency_usd_per_ms": 1.4
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "verdict": "pass",
+  "max_safe_deployment_level": 1,
+  "checks": [
+    {
+      "name": "data_sufficiency",
+      "status": "pass",
+      "severity": "medium",
+      "detail": "EDA needs only a modest sample."
+    }
+  ],
+  "leakage": [],
+  "blocking_issues": [],
+  "note": "This is the technical safety ceiling. Production (Level 4) additionally requires explicit human approval at deploy time; Avaloka never auto-promotes."
+}

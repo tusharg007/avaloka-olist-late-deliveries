@@ -1,0 +1,146 @@
+{
+  "mission_id": "b04be9af3831",
+  "kind": "train",
+  "started_at_epoch": 1794759433.9448433,
+  "source": {
+    "path": "/mnt/e/Avloka/data/prepared/orders_model.csv",
+    "sha256": "aff60420885ac985357742b6194827825f3c0ff8cd5026c03dfca0f8a43fadb0",
+    "format": "csv"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "machine": "x86_64",
+    "avaloka_mission_id": "b04be9af3831"
+  },
+  "transformations": [
+    {
+      "op": "drop_duplicate_rows",
+      "rows_removed": 28
+    },
+    {
+      "op": "strip_whitespace",
+      "columns": [
+        "customer_state",
+        "seller_state",
+        "main_category",
+        "payment_type",
+        "purchase_weekday"
+      ]
+    }
+  ],
+  "work_units": [
+    {
+      "firefly": "data_scout",
+      "human_role": "Data analyst",
+      "output": "Profiled 16 columns x 96470 rows; quality score 94/100 with 1 issues flagged.",
+      "manual_minutes": 141,
+      "compute_cost_usd": 0.000572,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.9538,
+      "notes": "",
+      "metadata": {
+        "quality_score": 94,
+        "n_issues": 1
+      }
+    },
+    {
+      "firefly": "sampling_specialist",
+      "human_role": "Data scientist",
+      "output": "Working sample: 96,470 rows (none). 96,470 rows fits the live full-analysis lane; the full dataset is used so no information is discarded.",
+      "manual_minutes": 30.0,
+      "compute_cost_usd": 2e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0028,
+      "notes": "",
+      "metadata": {
+        "sampled": false,
+        "strategy": "none"
+      }
+    },
+    {
+      "firefly": "data_engineer",
+      "human_role": "Data engineer",
+      "output": "Applied 2 documented transformations; wrote transformed_dataset.parquet (96442x16) + reproducible analysis.py / analysis.ipynb.",
+      "manual_minutes": 218,
+      "compute_cost_usd": 0.000255,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.4258,
+      "notes": "",
+      "metadata": {
+        "n_transformations": 2
+      }
+    },
+    {
+      "firefly": "analysis_planner",
+      "human_role": "Senior data scientist",
+      "output": "Planned task='binary_classification' with 3 candidate(s); split='stratified_train_test'; 2 human approval gate(s).",
+      "manual_minutes": 60.0,
+      "compute_cost_usd": 7e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0111,
+      "notes": "",
+      "metadata": {
+        "task": "binary_classification",
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "model_scientist",
+      "human_role": "ML scientist",
+      "output": "Trained 3 candidate(s); selected 'gradient_boosting' (roc_auc=0.7087).",
+      "manual_minutes": 450,
+      "compute_cost_usd": 0.116515,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 194.1923,
+      "notes": "",
+      "metadata": {
+        "selected": "gradient_boosting",
+        "score": 0.7087,
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "validator",
+      "human_role": "Model-risk specialist",
+      "output": "Validation verdict='pass'; 6 checks; max safe deployment level 4.",
+      "manual_minutes": 124,
+      "compute_cost_usd": 6.4e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.107,
+      "notes": "",
+      "metadata": {
+        "verdict": "pass",
+        "max_level": 4
+      }
+    },
+    {
+      "firefly": "finops",
+      "human_role": "Infrastructure engineer",
+      "output": "Cost-quality analysis across 3 candidate(s); recommended 'Maximum quality'.",
+      "manual_minutes": 45.0,
+      "compute_cost_usd": 1.6e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0262,
+      "notes": "",
+      "metadata": {
+        "recommended": "Maximum quality"
+      }
+    }
+  ],
+  "outputs": [
+    "analysis.ipynb",
+    "analysis.py",
+    "assumptions.yaml",
+    "cost_quality.json",
+    "data_quality.json",
+    "evaluation_report.html",
+    "executive_report.html",
+    "model_card.md",
+    "planner_graph.json",
+    "technical_report.html",
+    "transformed_dataset.parquet",
+    "validation_report.json",
+    "workload.json"
+  ]
+}

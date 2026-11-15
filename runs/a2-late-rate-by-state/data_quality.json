@@ -1,0 +1,770 @@
+{
+  "dataset": {
+    "source": "/mnt/e/Avloka/data/prepared/orders_analysis.csv",
+    "format": "csv",
+    "sha256": "8cf13ec40fbf1b5de9588ed20d83f9359655e3715364256818b3fd22152a389b",
+    "n_rows": 96470,
+    "n_cols": 19,
+    "delimiter": ","
+  },
+  "columns": [
+    {
+      "name": "customer_state",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 27,
+      "unique_pct": 0.0003,
+      "top_values": [
+        {
+          "value": "SP",
+          "count": 40494
+        },
+        {
+          "value": "RJ",
+          "count": 12350
+        },
+        {
+          "value": "MG",
+          "count": 11354
+        },
+        {
+          "value": "RS",
+          "count": 5344
+        },
+        {
+          "value": "PR",
+          "count": 4923
+        },
+        {
+          "value": "SC",
+          "count": 3546
+        },
+        {
+          "value": "BA",
+          "count": 3256
+        },
+        {
+          "value": "DF",
+          "count": 2080
+        },
+        {
+          "value": "ES",
+          "count": 1995
+        },
+        {
+          "value": "GO",
+          "count": 1957
+        }
+      ],
+      "sample_values": [
+        "SP",
+        "BA",
+        "GO",
+        "RN",
+        "SP"
+      ]
+    },
+    {
+      "name": "seller_state",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 22,
+      "unique_pct": 0.0002,
+      "top_values": [
+        {
+          "value": "SP",
+          "count": 68386
+        },
+        {
+          "value": "MG",
+          "count": 7661
+        },
+        {
+          "value": "PR",
+          "count": 7444
+        },
+        {
+          "value": "RJ",
+          "count": 4183
+        },
+        {
+          "value": "SC",
+          "count": 3558
+        },
+        {
+          "value": "RS",
+          "count": 1945
+        },
+        {
+          "value": "DF",
+          "count": 806
+        },
+        {
+          "value": "BA",
+          "count": 547
+        },
+        {
+          "value": "GO",
+          "count": 448
+        },
+        {
+          "value": "PE",
+          "count": 401
+        }
+      ],
+      "sample_values": [
+        "SP",
+        "SP",
+        "SP",
+        "MG",
+        "SP"
+      ]
+    },
+    {
+      "name": "same_state",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 2,
+      "unique_pct": 0.0,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.359594,
+        "median": 0.0,
+        "std": 0.479884,
+        "p25": 0.0,
+        "p75": 1.0,
+        "skew": 0.5852,
+        "n_outliers": 0
+      },
+      "sample_values": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "main_category",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 74,
+      "unique_pct": 0.0008,
+      "top_values": [
+        {
+          "value": "bed_bath_table",
+          "count": 9184
+        },
+        {
+          "value": "health_beauty",
+          "count": 8613
+        },
+        {
+          "value": "sports_leisure",
+          "count": 7492
+        },
+        {
+          "value": "computers_accessories",
+          "count": 6511
+        },
+        {
+          "value": "furniture_decor",
+          "count": 6188
+        },
+        {
+          "value": "housewares",
+          "count": 5680
+        },
+        {
+          "value": "watches_gifts",
+          "count": 5476
+        },
+        {
+          "value": "telephony",
+          "count": 4073
+        },
+        {
+          "value": "auto",
+          "count": 3792
+        },
+        {
+          "value": "toys",
+          "count": 3787
+        }
+      ],
+      "sample_values": [
+        "housewares",
+        "perfumery",
+        "auto",
+        "pet_shop",
+        "stationery"
+      ]
+    },
+    {
+      "name": "n_items",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 17,
+      "unique_pct": 0.0002,
+      "stats": {
+        "min": 1.0,
+        "max": 21.0,
+        "mean": 1.14221,
+        "median": 1.0,
+        "std": 0.538824,
+        "p25": 1.0,
+        "p75": 1.0,
+        "skew": 7.5576,
+        "n_outliers": 9635
+      },
+      "sample_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "n_sellers",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 5,
+      "unique_pct": 0.0001,
+      "stats": {
+        "min": 1.0,
+        "max": 5.0,
+        "mean": 1.013901,
+        "median": 1.0,
+        "std": 0.123542,
+        "p25": 1.0,
+        "p75": 1.0,
+        "skew": 9.8703,
+        "n_outliers": 1275
+      },
+      "sample_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "items_value",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 7498,
+      "unique_pct": 0.0777,
+      "stats": {
+        "min": 0.85,
+        "max": 13440.0,
+        "mean": 137.040001,
+        "median": 86.5,
+        "std": 209.052608,
+        "p25": 45.9,
+        "p75": 149.9,
+        "skew": 9.8854,
+        "n_outliers": 7658
+      },
+      "sample_values": [
+        29.99,
+        118.7,
+        159.9,
+        45.0,
+        19.9
+      ]
+    },
+    {
+      "name": "freight_value",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 7626,
+      "unique_pct": 0.0791,
+      "stats": {
+        "min": 0.0,
+        "max": 1794.96,
+        "mean": 22.834413,
+        "median": 17.19,
+        "std": 21.738963,
+        "p25": 13.85,
+        "p75": 24.05,
+        "skew": 12.1435,
+        "n_outliers": 9693
+      },
+      "sample_values": [
+        8.72,
+        22.76,
+        19.22,
+        27.2,
+        8.72
+      ]
+    },
+    {
+      "name": "freight_share",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 43330,
+      "unique_pct": 0.4492,
+      "stats": {
+        "min": 0.0,
+        "max": 0.9554507337526204,
+        "mean": 0.209139,
+        "median": 0.183279,
+        "std": 0.12574,
+        "p25": 0.1166303930354628,
+        "p75": 0.2758312876590046,
+        "skew": 1.0609,
+        "n_outliers": 2580
+      },
+      "sample_values": [
+        0.2252647894600878,
+        0.1608935388095574,
+        0.1073023671281822,
+        0.3767313019390581,
+        0.3046820405310972
+      ]
+    },
+    {
+      "name": "total_weight_g",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 16,
+      "missing_pct": 0.0002,
+      "n_unique": 2859,
+      "unique_pct": 0.0296,
+      "stats": {
+        "min": 0.0,
+        "max": 184400.0,
+        "mean": 2386.86831,
+        "median": 750.0,
+        "std": 4770.109876,
+        "p25": 300.0,
+        "p75": 2050.0,
+        "skew": 6.5726,
+        "n_outliers": 13544
+      },
+      "sample_values": [
+        500.0,
+        400.0,
+        420.0,
+        450.0,
+        250.0
+      ]
+    },
+    {
+      "name": "payment_type",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 1,
+      "missing_pct": 0.0,
+      "n_unique": 4,
+      "unique_pct": 0.0,
+      "top_values": [
+        {
+          "value": "credit_card",
+          "count": 72818
+        },
+        {
+          "value": "boleto",
+          "count": 19191
+        },
+        {
+          "value": "voucher",
+          "count": 2977
+        },
+        {
+          "value": "debit_card",
+          "count": 1483
+        }
+      ],
+      "sample_values": [
+        "voucher",
+        "boleto",
+        "credit_card",
+        "credit_card",
+        "credit_card"
+      ]
+    },
+    {
+      "name": "max_installments",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 1,
+      "missing_pct": 0.0,
+      "n_unique": 24,
+      "unique_pct": 0.0002,
+      "stats": {
+        "min": 0.0,
+        "max": 24.0,
+        "mean": 2.928319,
+        "median": 2.0,
+        "std": 2.713067,
+        "p25": 1.0,
+        "p75": 4.0,
+        "skew": 1.6035,
+        "n_outliers": 6087
+      },
+      "sample_values": [
+        1.0,
+        1.0,
+        3.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "purchase_weekday",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 7,
+      "unique_pct": 0.0001,
+      "top_values": [
+        {
+          "value": "Monday",
+          "count": 15701
+        },
+        {
+          "value": "Tuesday",
+          "count": 15502
+        },
+        {
+          "value": "Wednesday",
+          "count": 15074
+        },
+        {
+          "value": "Thursday",
+          "count": 14322
+        },
+        {
+          "value": "Friday",
+          "count": 13684
+        },
+        {
+          "value": "Sunday",
+          "count": 11632
+        },
+        {
+          "value": "Saturday",
+          "count": 10555
+        }
+      ],
+      "sample_values": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Saturday",
+        "Tuesday"
+      ]
+    },
+    {
+      "name": "purchase_hour",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 24,
+      "unique_pct": 0.0002,
+      "stats": {
+        "min": 0.0,
+        "max": 23.0,
+        "mean": 14.773028,
+        "median": 15.0,
+        "std": 5.328347,
+        "p25": 11.0,
+        "p75": 19.0,
+        "skew": -0.601,
+        "n_outliers": 0
+      },
+      "sample_values": [
+        10,
+        20,
+        8,
+        19,
+        21
+      ]
+    },
+    {
+      "name": "promised_days",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 93880,
+      "unique_pct": 0.9732,
+      "stats": {
+        "min": 2.0080092592592598,
+        "max": 155.13546296296298,
+        "mean": 23.736343,
+        "median": 23.23088,
+        "std": 8.761052,
+        "p25": 18.32990451388889,
+        "p75": 28.407795138888886,
+        "skew": 0.9051,
+        "n_outliers": 2427
+      },
+      "sample_values": [
+        15.5440625,
+        19.137766203703706,
+        26.63971064814815,
+        26.188819444444444,
+        12.112048611111112
+      ]
+    },
+    {
+      "name": "purchase_month",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 23,
+      "unique_pct": 0.0002,
+      "top_values": [
+        {
+          "value": "2017-11",
+          "count": 7288
+        },
+        {
+          "value": "2018-01",
+          "count": 7069
+        },
+        {
+          "value": "2018-03",
+          "count": 7003
+        },
+        {
+          "value": "2018-04",
+          "count": 6798
+        },
+        {
+          "value": "2018-05",
+          "count": 6749
+        },
+        {
+          "value": "2018-02",
+          "count": 6555
+        },
+        {
+          "value": "2018-08",
+          "count": 6351
+        },
+        {
+          "value": "2018-07",
+          "count": 6156
+        },
+        {
+          "value": "2018-06",
+          "count": 6096
+        },
+        {
+          "value": "2017-12",
+          "count": 5513
+        }
+      ],
+      "sample_values": [
+        "2017-10",
+        "2018-07",
+        "2018-08",
+        "2017-11",
+        "2018-02"
+      ]
+    },
+    {
+      "name": "days_late",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 198,
+      "unique_pct": 0.0021,
+      "stats": {
+        "min": -147.0,
+        "max": 188.0,
+        "mean": -11.875889,
+        "median": -12.0,
+        "std": 10.182105,
+        "p25": -17.0,
+        "p75": -7.0,
+        "skew": 2.0162,
+        "n_outliers": 4297
+      },
+      "sample_values": [
+        -8.0,
+        -6.0,
+        -18.0,
+        -13.0,
+        -10.0
+      ]
+    },
+    {
+      "name": "review_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 646,
+      "missing_pct": 0.0067,
+      "n_unique": 5,
+      "unique_pct": 0.0001,
+      "stats": {
+        "min": 1.0,
+        "max": 5.0,
+        "mean": 4.15588,
+        "median": 5.0,
+        "std": 1.28481,
+        "p25": 4.0,
+        "p75": 5.0,
+        "skew": -1.4828,
+        "n_outliers": 12272
+      },
+      "sample_values": [
+        4.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    {
+      "name": "is_late",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 2,
+      "unique_pct": 0.0,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.067731,
+        "median": 0.0,
+        "std": 0.251285,
+        "p25": 0.0,
+        "p75": 0.0,
+        "skew": 3.4405,
+        "n_outliers": 6534
+      },
+      "sample_values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "quality": {
+    "score": 94,
+    "n_rows": 96470,
+    "n_cols": 19,
+    "duplicate_rows": 17,
+    "constant_columns": [],
+    "high_missing_columns": [],
+    "high_cardinality_columns": [],
+    "id_columns": [],
+    "issues": [
+      {
+        "severity": "medium",
+        "column": null,
+        "kind": "duplicate_rows",
+        "detail": "17 duplicate rows (0.0%)."
+      }
+    ]
+  },
+  "correlations": [
+    {
+      "a": "freight_value",
+      "b": "total_weight_g",
+      "corr": 0.6347
+    },
+    {
+      "a": "days_late",
+      "b": "is_late",
+      "corr": 0.5955
+    },
+    {
+      "a": "same_state",
+      "b": "promised_days",
+      "corr": 0.5264
+    },
+    {
+      "a": "promised_days",
+      "b": "days_late",
+      "corr": 0.4999
+    },
+    {
+      "a": "n_items",
+      "b": "freight_value",
+      "corr": 0.4354
+    },
+    {
+      "a": "items_value",
+      "b": "freight_share",
+      "corr": 0.4154
+    },
+    {
+      "a": "items_value",
+      "b": "freight_value",
+      "corr": 0.4083
+    },
+    {
+      "a": "review_score",
+      "b": "is_late",
+      "corr": 0.392
+    },
+    {
+      "a": "items_value",
+      "b": "total_weight_g",
+      "corr": 0.3495
+    },
+    {
+      "a": "items_value",
+      "b": "max_installments",
+      "corr": 0.3143
+    },
+    {
+      "a": "n_items",
+      "b": "n_sellers",
+      "corr": 0.285
+    },
+    {
+      "a": "days_late",
+      "b": "review_score",
+      "corr": 0.2674
+    },
+    {
+      "a": "same_state",
+      "b": "freight_value",
+      "corr": 0.2535
+    },
+    {
+      "a": "freight_share",
+      "b": "max_installments",
+      "corr": 0.2511
+    },
+    {
+      "a": "freight_value",
+      "b": "promised_days",
+      "corr": 0.2376
+    }
+  ]
+}

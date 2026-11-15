@@ -1,0 +1,156 @@
+{
+  "mission_id": "aa60e82b0379",
+  "kind": "train",
+  "goal": "Predict 'is_late'",
+  "data_source": "/mnt/e/Avloka/data/prepared/orders_leaky.csv",
+  "output_dir": "/mnt/e/Avloka/runs/m2-predict-late-leaky",
+  "task": "binary_classification",
+  "workload": {
+    "lane": "online",
+    "n_rows": 96501,
+    "n_bytes": 12712687,
+    "estimated": true,
+    "rationale": "96,501 rows / 12.1 MB fits the live full-analysis budget.",
+    "spoken": "This one's compact \u2014 ~96,501 rows. I'll analyse the whole thing live, right now, nothing held back.",
+    "recommend_batch": false
+  },
+  "verdict": "pass",
+  "max_safe_deployment_level": 4,
+  "economics": {
+    "mission_duration_seconds": 173.98528368799998,
+    "estimated_manual_effort_hours": 20.1,
+    "human_review_hours": 1.81,
+    "compute_cost_usd": 0.1,
+    "model_cost_usd": 0.0,
+    "mission_charge_usd": 0.0,
+    "total_mission_cost_usd": 0.1,
+    "human_review_cost_usd": 144.8,
+    "total_customer_cost_usd": 144.9,
+    "estimated_labor_value_usd": 1608.0,
+    "economic_multiplier": 11.1,
+    "loaded_hourly_rate_usd": 80.0,
+    "tier": "community"
+  },
+  "fireflies": [
+    {
+      "firefly": "data_scout",
+      "human_role": "Data analyst",
+      "output": "Profiled 17 columns x 96470 rows; quality score 100/100 with 0 issues flagged.",
+      "manual_minutes": 147,
+      "compute_cost_usd": 0.000623,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 1.0384,
+      "notes": "",
+      "metadata": {
+        "quality_score": 100,
+        "n_issues": 0
+      }
+    },
+    {
+      "firefly": "sampling_specialist",
+      "human_role": "Data scientist",
+      "output": "Working sample: 96,470 rows (none). 96,470 rows fits the live full-analysis lane; the full dataset is used so no information is discarded.",
+      "manual_minutes": 30.0,
+      "compute_cost_usd": 2e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.003,
+      "notes": "",
+      "metadata": {
+        "sampled": false,
+        "strategy": "none"
+      }
+    },
+    {
+      "firefly": "data_engineer",
+      "human_role": "Data engineer",
+      "output": "Applied 1 documented transformations; wrote transformed_dataset.parquet (96470x17) + reproducible analysis.py / analysis.ipynb.",
+      "manual_minutes": 226,
+      "compute_cost_usd": 0.000273,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.4551,
+      "notes": "",
+      "metadata": {
+        "n_transformations": 1
+      }
+    },
+    {
+      "firefly": "analysis_planner",
+      "human_role": "Senior data scientist",
+      "output": "Planned task='binary_classification' with 3 candidate(s); split='stratified_train_test'; 2 human approval gate(s).",
+      "manual_minutes": 60.0,
+      "compute_cost_usd": 8e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0138,
+      "notes": "",
+      "metadata": {
+        "task": "binary_classification",
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "model_scientist",
+      "human_role": "ML scientist",
+      "output": "Trained 3 candidate(s); selected 'logistic_regression' (roc_auc=1.0000).",
+      "manual_minutes": 450,
+      "compute_cost_usd": 0.103327,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 172.2124,
+      "notes": "",
+      "metadata": {
+        "selected": "logistic_regression",
+        "score": 1.0,
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "validator",
+      "human_role": "Model-risk specialist",
+      "output": "Validation verdict='pass'; 6 checks; max safe deployment level 4.",
+      "manual_minutes": 128,
+      "compute_cost_usd": 4.9e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.081,
+      "notes": "",
+      "metadata": {
+        "verdict": "pass",
+        "max_level": 4
+      }
+    },
+    {
+      "firefly": "finops",
+      "human_role": "Infrastructure engineer",
+      "output": "Cost-quality analysis across 3 candidate(s); recommended 'Economical'.",
+      "manual_minutes": 45.0,
+      "compute_cost_usd": 6e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0095,
+      "notes": "",
+      "metadata": {
+        "recommended": "Economical"
+      }
+    },
+    {
+      "firefly": "reporter",
+      "human_role": "Analyst / consultant",
+      "output": "Wrote executive & technical reports, assumptions, lineage, environment lock and README.",
+      "manual_minutes": 120.0,
+      "compute_cost_usd": 8.5e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.1422,
+      "notes": "",
+      "metadata": {}
+    }
+  ],
+  "budget": {
+    "limit_usd": null,
+    "spent_usd": 0.1044
+  },
+  "model": {
+    "selected": "logistic_regression",
+    "metric": "roc_auc",
+    "score": 0.999951295267274,
+    "baseline_score": 0.5,
+    "baseline_strategy": "prior",
+    "beats_baseline": true
+  }
+}

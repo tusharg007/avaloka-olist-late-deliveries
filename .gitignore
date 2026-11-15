@@ -1,0 +1,9 @@
+# Raw and prepared data are rebuilt by the scripts in prep/ (see README).
+data/
+# Local smoke tests and bulky run artefacts.
+runs/smoke-*/
+runs/**/transformed_dataset.parquet
+runs/**/model/
+repro/
+__pycache__/
+*.pyc

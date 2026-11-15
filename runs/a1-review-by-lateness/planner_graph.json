@@ -1,0 +1,101 @@
+{
+  "mission_id": "8d8b6f5f1c18",
+  "goal": "average review_score by is_late",
+  "task": "exploratory_analysis",
+  "task_reason": "No --target supplied; mission is analysis-only.",
+  "target": null,
+  "metric": null,
+  "split": {
+    "strategy": "none",
+    "reason": "Analysis-only mission; no model split required."
+  },
+  "sampling": {
+    "sampled": false,
+    "strategy": "none"
+  },
+  "candidate_algorithms": [],
+  "compute_plan": {
+    "execution_mode": "local",
+    "device": "cpu",
+    "max_candidates": 0,
+    "cost_per_candidate_usd": 0.05,
+    "budget_note": "Unconstrained budget; all candidate algorithms considered."
+  },
+  "data_sufficiency": {
+    "sufficient": true,
+    "n_rows": 96470,
+    "reason": "EDA needs only a modest sample."
+  },
+  "hypotheses": [
+    "'freight_value' and 'total_weight_g' move together (|corr|=0.6347); consider redundancy or a shared driver.",
+    "'days_late' and 'is_late' move together (|corr|=0.5955); consider redundancy or a shared driver.",
+    "'same_state' and 'promised_days' move together (|corr|=0.5264); consider redundancy or a shared driver.",
+    "Surface the dominant segments and the variables that separate them."
+  ],
+  "human_approval_gates": [
+    "Confirm the target and metric match the intended decision."
+  ],
+  "refuse_if": [
+    "Target leakage is detected and unresolved.",
+    "Data is insufficient for a stable estimate of the chosen metric.",
+    "A requested deployment latency cannot be met by any candidate."
+  ],
+  "execution_graph": {
+    "nodes": [
+      {
+        "id": "data_scout",
+        "role": "Data analyst",
+        "produces": "data_quality.json"
+      },
+      {
+        "id": "sampling_specialist",
+        "role": "Data scientist",
+        "produces": "working sample"
+      },
+      {
+        "id": "data_engineer",
+        "role": "Data engineer",
+        "produces": "transformed_dataset.parquet"
+      },
+      {
+        "id": "analysis_planner",
+        "role": "Senior data scientist",
+        "produces": "planner_graph.json"
+      },
+      {
+        "id": "validator",
+        "role": "Model-risk specialist",
+        "produces": "validation_report.json"
+      },
+      {
+        "id": "reporter",
+        "role": "Analyst / consultant",
+        "produces": "executive & technical reports"
+      }
+    ],
+    "edges": [
+      {
+        "from": "data_scout",
+        "to": "sampling_specialist"
+      },
+      {
+        "from": "sampling_specialist",
+        "to": "data_engineer"
+      },
+      {
+        "from": "data_engineer",
+        "to": "analysis_planner"
+      },
+      {
+        "from": "analysis_planner",
+        "to": "validator"
+      },
+      {
+        "from": "validator",
+        "to": "reporter"
+      }
+    ]
+  },
+  "goal_analysis_status": "answered",
+  "goal_analysis_kind": "group_comparison"
+}

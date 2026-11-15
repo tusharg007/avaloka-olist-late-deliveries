@@ -1,0 +1,45 @@
+{
+  "verdict": "pass",
+  "max_safe_deployment_level": 4,
+  "checks": [
+    {
+      "name": "data_sufficiency",
+      "status": "pass",
+      "severity": "medium",
+      "detail": "~50 rows/feature suggests >= 750 rows for 15 features."
+    },
+    {
+      "name": "target_leakage",
+      "status": "pass",
+      "severity": "high",
+      "detail": "No feature is near-perfectly predictive of the target."
+    },
+    {
+      "name": "split_validity",
+      "status": "pass",
+      "severity": "medium",
+      "detail": "Used 'stratified_train_test' (77153 train / 19289 test rows)."
+    },
+    {
+      "name": "beats_baseline",
+      "status": "pass",
+      "severity": "high",
+      "detail": "CV roc_auc 0.709 beats the prior baseline (0.500) by more than fold noise."
+    },
+    {
+      "name": "stability",
+      "status": "pass",
+      "severity": "medium",
+      "detail": "CV roc_auc = 0.709 +/- 0.011 (stable)."
+    },
+    {
+      "name": "overfitting",
+      "status": "pass",
+      "severity": "low",
+      "detail": "Holdout and CV scores are consistent."
+    }
+  ],
+  "leakage": [],
+  "blocking_issues": [],
+  "note": "This is the technical safety ceiling. Production (Level 4) additionally requires explicit human approval at deploy time; Avaloka never auto-promotes."
+}

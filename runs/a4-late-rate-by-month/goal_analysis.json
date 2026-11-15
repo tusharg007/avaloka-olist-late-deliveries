@@ -1,0 +1,64 @@
+{
+  "goal": "average is_late by purchase_month",
+  "kind": "group_comparison",
+  "status": "answered",
+  "scope": "All 96,470 working rows",
+  "columns": [
+    "purchase_month",
+    "is_late"
+  ],
+  "metrics": {
+    "group_column": "purchase_month",
+    "value_column": "is_late",
+    "aggregation": "mean",
+    "groups": [
+      {
+        "group": "2016-09",
+        "value": 1.0
+      },
+      {
+        "group": "2018-03",
+        "value": 0.189633
+      },
+      {
+        "group": "2018-02",
+        "value": 0.141266
+      },
+      {
+        "group": "2017-11",
+        "value": 0.12404
+      },
+      {
+        "group": "2017-12",
+        "value": 0.074551
+      },
+      {
+        "group": "2018-05",
+        "value": 0.065639
+      },
+      {
+        "group": "2017-04",
+        "value": 0.065567
+      },
+      {
+        "group": "2018-08",
+        "value": 0.06188
+      },
+      {
+        "group": "2018-01",
+        "value": 0.057009
+      },
+      {
+        "group": "2017-03",
+        "value": 0.045562
+      }
+    ]
+  },
+  "findings": [
+    "purchase_month=2016-09: mean is_late=1.",
+    "purchase_month=2018-03: mean is_late=0.19.",
+    "purchase_month=2018-02: mean is_late=0.141.",
+    "purchase_month=2017-11: mean is_late=0.124.",
+    "purchase_month=2017-12: mean is_late=0.0746."
+  ]
+}

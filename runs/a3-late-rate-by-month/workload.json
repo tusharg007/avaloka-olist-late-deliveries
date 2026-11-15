@@ -1,0 +1,9 @@
+{
+  "lane": "online",
+  "n_rows": 96500,
+  "n_bytes": 12660864,
+  "estimated": true,
+  "rationale": "96,500 rows / 12.1 MB fits the live full-analysis budget.",
+  "spoken": "This one's compact \u2014 ~96,500 rows. I'll analyse the whole thing live, right now, nothing held back.",
+  "recommend_batch": false
+}

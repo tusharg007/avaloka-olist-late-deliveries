@@ -1,0 +1,133 @@
+{
+  "mission_id": "b04be9af3831",
+  "goal": "Predict 'is_late'",
+  "task": "binary_classification",
+  "task_reason": "Target has exactly 2 classes.",
+  "target": "is_late",
+  "metric": null,
+  "split": {
+    "strategy": "stratified_train_test",
+    "test_size": 0.2,
+    "reason": "Stratified split preserves class balance in train and test."
+  },
+  "sampling": {
+    "sampled": false,
+    "strategy": "none"
+  },
+  "candidate_algorithms": [
+    "logistic_regression",
+    "random_forest",
+    "gradient_boosting"
+  ],
+  "compute_plan": {
+    "execution_mode": "local",
+    "device": "cpu",
+    "max_candidates": 3,
+    "cost_per_candidate_usd": 0.05,
+    "budget_note": "Unconstrained budget; all candidate algorithms considered."
+  },
+  "data_sufficiency": {
+    "sufficient": true,
+    "n_rows": 96470,
+    "rows_recommended": 750,
+    "reason": "~50 rows/feature suggests >= 750 rows for 15 features.",
+    "min_class_count": 6534
+  },
+  "hypotheses": [
+    "'freight_value' and 'total_weight_g' move together (|corr|=0.6347); consider redundancy or a shared driver.",
+    "'same_state' and 'promised_days' move together (|corr|=0.5264); consider redundancy or a shared driver.",
+    "Identify which features most influence 'is_late' and quantify the effect."
+  ],
+  "human_approval_gates": [
+    "Confirm the target and metric match the intended decision.",
+    "Approve the model before any Level 4 (production) deployment."
+  ],
+  "refuse_if": [
+    "Target leakage is detected and unresolved.",
+    "Data is insufficient for a stable estimate of the chosen metric.",
+    "A requested deployment latency cannot be met by any candidate."
+  ],
+  "execution_graph": {
+    "nodes": [
+      {
+        "id": "data_scout",
+        "role": "Data analyst",
+        "produces": "data_quality.json"
+      },
+      {
+        "id": "sampling_specialist",
+        "role": "Data scientist",
+        "produces": "working sample"
+      },
+      {
+        "id": "data_engineer",
+        "role": "Data engineer",
+        "produces": "transformed_dataset.parquet"
+      },
+      {
+        "id": "analysis_planner",
+        "role": "Senior data scientist",
+        "produces": "planner_graph.json"
+      },
+      {
+        "id": "model_scientist",
+        "role": "ML scientist",
+        "produces": "model + experiments"
+      },
+      {
+        "id": "validator",
+        "role": "Model-risk specialist",
+        "produces": "validation_report.json"
+      },
+      {
+        "id": "finops",
+        "role": "Infrastructure engineer",
+        "produces": "cost-quality options"
+      },
+      {
+        "id": "ml_engineer",
+        "role": "ML platform engineer",
+        "produces": "deployment package"
+      },
+      {
+        "id": "reporter",
+        "role": "Analyst / consultant",
+        "produces": "executive & technical reports"
+      }
+    ],
+    "edges": [
+      {
+        "from": "data_scout",
+        "to": "sampling_specialist"
+      },
+      {
+        "from": "sampling_specialist",
+        "to": "data_engineer"
+      },
+      {
+        "from": "data_engineer",
+        "to": "analysis_planner"
+      },
+      {
+        "from": "analysis_planner",
+        "to": "model_scientist"
+      },
+      {
+        "from": "model_scientist",
+        "to": "validator"
+      },
+      {
+        "from": "validator",
+        "to": "finops"
+      },
+      {
+        "from": "finops",
+        "to": "ml_engineer"
+      },
+      {
+        "from": "ml_engineer",
+        "to": "reporter"
+      }
+    ]
+  }
+}

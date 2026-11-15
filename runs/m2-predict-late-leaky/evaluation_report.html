@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Evaluation — Predict &#39;is_late&#39;</title>
+<style>
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1b1f24;background:#f6f8fa}
+.wrap{max-width:960px;margin:0 auto;padding:32px}
+h1{font-size:28px;margin:0 0 4px} h2{font-size:20px;margin:28px 0 8px;border-bottom:1px solid #e1e4e8;padding-bottom:6px}
+.sub{color:#57606a;margin:0 0 20px}
+.card{background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:16px 20px;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14px} th,td{text-align:left;padding:7px 10px;border-bottom:1px solid #eaecef}
+th{background:#f6f8fa} .kpi{display:inline-block;min-width:150px;margin:6px 18px 6px 0}
+.kpi .v{font-size:22px;font-weight:600} .kpi .l{color:#57606a;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.pass{color:#1a7f37;font-weight:600}.warn{color:#9a6700;font-weight:600}.fail{color:#cf222e;font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:12px;background:#ddf4ff;color:#0969da}
+.muted{color:#57606a;font-size:13px} code{background:#eff1f3;padding:1px 5px;border-radius:4px}
+</style></head><body><div class="wrap">
+<h1>Model evaluation report</h1><p class="sub">Predict &#39;is_late&#39; · binary_classification · metric roc_auc</p>
+<h2>Candidate comparison</h2>
+<div class="card"><table><tr><th>Candidate</th><th>Primary (roc_auc)</th><th>All metrics</th><th>CV</th><th>Latency ms/req</th></tr>
+<tr style="font-weight:600;background:#f0fff4">
+<td>logistic_regression</td><td>1.0000</td>
+<td class="muted">accuracy=0.998 f1=0.987 roc_auc=1.000 </td>
+<td>1.000±0.000</td>
+<td>1.89</td></tr><tr >
+<td>gradient_boosting</td><td>0.9998</td>
+<td class="muted">accuracy=0.996 f1=0.967 roc_auc=1.000 </td>
+<td>1.000±0.000</td>
+<td>3.14</td></tr><tr >
+<td>random_forest</td><td>0.9977</td>
+<td class="muted">accuracy=0.986 f1=0.883 roc_auc=0.998 </td>
+<td>0.997±0.001</td>
+<td>10.54</td></tr></table></div>
+<h2>Cost / quality options</h2>
+<div class="card"><table><tr><th>Option</th><th>Candidate</th><th>Score</th><th>Latency</th><th>Est. monthly serving</th></tr>
+<tr><td>Economical</td><td>logistic_regression</td>
+<td>1.0</td><td>1.89 ms</td><td>$20.65</td></tr><tr><td>Balanced</td><td>logistic_regression</td>
+<td>1.0</td><td>1.89 ms</td><td>$20.65</td></tr><tr><td>Maximum quality</td><td>logistic_regression</td>
+<td>1.0</td><td>1.89 ms</td><td>$20.65</td></tr></table><p><strong>Recommendation:</strong> Economical — Higher-cost models add negligible quality; the Economical option is the rational default.</p></div><h2>Validation</h2>
+<div class="card"><p>Verdict <span class="pass">PASS</span>;
+max safe deployment level 4/4.</p></div>
+</div></body></html>

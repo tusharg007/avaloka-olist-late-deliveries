@@ -1,0 +1,125 @@
+{
+  "mission_id": "3a01d6209ece",
+  "kind": "analyze",
+  "goal": "monthly trend of is_late by purchase_month",
+  "data_source": "/mnt/e/Avloka/data/prepared/orders_analysis.csv",
+  "output_dir": "/mnt/e/Avloka/runs/a3-late-rate-by-month",
+  "task": "exploratory_analysis",
+  "workload": {
+    "lane": "online",
+    "n_rows": 96500,
+    "n_bytes": 12660864,
+    "estimated": true,
+    "rationale": "96,500 rows / 12.1 MB fits the live full-analysis budget.",
+    "spoken": "This one's compact \u2014 ~96,500 rows. I'll analyse the whole thing live, right now, nothing held back.",
+    "recommend_batch": false
+  },
+  "verdict": "pass",
+  "max_safe_deployment_level": 1,
+  "economics": {
+    "mission_duration_seconds": 2.026663491000022,
+    "estimated_manual_effort_hours": 12.45,
+    "human_review_hours": 1.12,
+    "compute_cost_usd": 0.0,
+    "model_cost_usd": 0.0,
+    "mission_charge_usd": 0.0,
+    "total_mission_cost_usd": 0.0,
+    "human_review_cost_usd": 89.6,
+    "total_customer_cost_usd": 89.6,
+    "estimated_labor_value_usd": 996.0,
+    "economic_multiplier": 11.1,
+    "loaded_hourly_rate_usd": 80.0,
+    "tier": "community"
+  },
+  "fireflies": [
+    {
+      "firefly": "data_scout",
+      "human_role": "Data analyst",
+      "output": "Profiled 19 columns x 96470 rows; quality score 94/100 with 1 issues flagged.",
+      "manual_minutes": 159,
+      "compute_cost_usd": 0.000752,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 1.2541,
+      "notes": "",
+      "metadata": {
+        "quality_score": 94,
+        "n_issues": 1
+      }
+    },
+    {
+      "firefly": "sampling_specialist",
+      "human_role": "Data scientist",
+      "output": "Working sample: 96,470 rows (none). 96,470 rows fits the live full-analysis lane; the full dataset is used so no information is discarded.",
+      "manual_minutes": 30.0,
+      "compute_cost_usd": 2e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0033,
+      "notes": "",
+      "metadata": {
+        "sampled": false,
+        "strategy": "none"
+      }
+    },
+    {
+      "firefly": "data_engineer",
+      "human_role": "Data engineer",
+      "output": "Applied 2 documented transformations; wrote transformed_dataset.parquet (96453x19) + reproducible analysis.py / analysis.ipynb.",
+      "manual_minutes": 242,
+      "compute_cost_usd": 0.000351,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.5855,
+      "notes": "",
+      "metadata": {
+        "n_transformations": 2
+      }
+    },
+    {
+      "firefly": "analysis_planner",
+      "human_role": "Senior data scientist",
+      "output": "Planned task='exploratory_analysis' with 0 candidate(s); split='none'; 1 human approval gate(s).",
+      "manual_minutes": 60.0,
+      "compute_cost_usd": 1.6e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0267,
+      "notes": "",
+      "metadata": {
+        "task": "exploratory_analysis",
+        "n_candidates": 0
+      }
+    },
+    {
+      "firefly": "validator",
+      "human_role": "Model-risk specialist",
+      "output": "Validation verdict='pass'; 1 checks; max safe deployment level 1.",
+      "manual_minutes": 136,
+      "compute_cost_usd": 1.2e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0194,
+      "notes": "",
+      "metadata": {
+        "verdict": "pass",
+        "max_level": 1
+      }
+    },
+    {
+      "firefly": "reporter",
+      "human_role": "Analyst / consultant",
+      "output": "Wrote executive & technical reports, assumptions, lineage, environment lock and README.",
+      "manual_minutes": 120.0,
+      "compute_cost_usd": 7e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.117,
+      "notes": "",
+      "metadata": {}
+    }
+  ],
+  "budget": {
+    "limit_usd": null,
+    "spent_usd": 0.0012
+  },
+  "goal_analysis": {
+    "kind": "trend",
+    "status": "limited",
+    "scope": "All 96,470 working rows"
+  }
+}

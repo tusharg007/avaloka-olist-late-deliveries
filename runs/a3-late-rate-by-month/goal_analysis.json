@@ -1,0 +1,14 @@
+{
+  "goal": "monthly trend of is_late by purchase_month",
+  "kind": "trend",
+  "status": "limited",
+  "scope": "All 96,470 working rows",
+  "columns": [
+    "purchase_month",
+    "is_late"
+  ],
+  "metrics": {},
+  "findings": [
+    "A time trend cannot be calculated: no date/time column was identified."
+  ]
+}
