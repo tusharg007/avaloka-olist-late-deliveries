@@ -101,6 +101,8 @@ Each run folder holds Avaloka's `executive_report.html`, `goal_analysis.json`,
 
 ### 1. `avaloka train` crashes on a single blank text cell
 
+Reported as [guruvaidev/avaloka#95](https://github.com/guruvaidev/avaloka/issues/95).
+
 One missing value in any text column stops training with
 `TypeError: boolean value of NA is ambiguous`. The message then suggests
 "ragged rows, mixed delimiters or an unusual encoding", which is not the cause.
@@ -118,6 +120,9 @@ before training. In Olist this was triggered by 1 order out of 96,470 with no
 payment type.
 
 ### 2. The leakage check passes a leak that is split across two columns
+
+Reported as [guruvaidev/avaloka#96](https://github.com/guruvaidev/avaloka/issues/96),
+with a reproduction on Avaloka's own `churn.csv`.
 
 `orders_leaky.csv` adds `actual_days` (days from purchase to delivery, known
 only after delivery) to a table that already has `promised_days`. Together
